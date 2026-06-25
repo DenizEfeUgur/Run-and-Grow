@@ -1,0 +1,121 @@
+<div class="page">
+  <!-- Greeting + motivation -->
+  <section class="hero card card-hero">
+    <div class="hero__emoji">👋</div>
+    <div class="hero__body">
+      <h1 class="hero__title">Hallo Läufer:in!</h1>
+      <p class="hero__text">{{ motivation() }}</p>
+      <a class="btn btn-warm" routerLink="/training">➕ Training hinzufügen</a>
+    </div>
+  </section>
+
+  <div class="grid grid-2 dash-grid">
+    <!-- Countdown -->
+    <section class="card countdown">
+      <div class="card-label">🏁 Halbmarathon</div>
+
+      @if (store.raceStatus(); as race) {
+        <div class="countdown__big">
+          @if (!race.past && race.days > 0) {
+            <span class="countdown__num">{{ race.days }}</span>
+            <span class="countdown__unit">{{ race.days === 1 ? 'Tag' : 'Tage' }}</span>
+          } @else {
+            <span class="countdown__msg">{{ race.label }}</span>
+          }
+        </div>
+        <p class="countdown__date muted">Renntag: {{ formatDate(store.settings().raceDate!) }}</p>
+      } @else {
+        <p class="muted countdown__hint">Lege dein Renndatum fest und behalte den Countdown im Blick.</p>
+      }
+
+      <label class="countdown__set">
+        <span class="muted">Renndatum festlegen</span>
+        <input
+          class="control"
+          type="date"
+          #raceInput
+          [value]="store.settings().raceDate ?? ''"
+          (change)="onRaceDateChange(raceInput.value)"
+        />
+      </label>
+    </section>
+
+    <!-- Weekly goal -->
+    <section class="card weekly">
+      <div class="weekly__head">
+        <div class="card-label">📅 Wochenziel</div>
+        <a class="chip" routerLink="/settings">{{ store.weeklyGoalKm() }} km ändern</a>
+      </div>
+
+      <div class="weekly__values">
+        <span class="weekly__km">{{ store.weeklyKm() }}</span>
+        <span class="muted"> / {{ store.weeklyGoalKm() }} km</span>
+      </div>
+
+      <div class="progress" role="progressbar" [attr.aria-valuenow]="store.weeklyProgress()">
+        <div class="progress__bar" [style.width.%]="store.weeklyProgress()"></div>
+      </div>
+
+      <p class="weekly__pct muted">
+        {{ store.weeklyProgress() }}% geschafft
+        @if (store.goalReached()) {
+          · 🦋 Wochenziel erreicht!
+        }
+      </p>
+    </section>
+  </div>
+
+  <!-- KPIs -->
+  <section class="stats">
+    <div class="stat card">
+      <span class="stat__icon">🏃</span>
+      <span class="stat__value">{{ store.runsThisWeek() }}</span>
+      <span class="stat__label">Läufe diese Woche</span>
+    </div>
+    <div class="stat card">
+      <span class="stat__icon">📏</span>
+      <span class="stat__value">{{ store.weeklyKm() }}</span>
+      <span class="stat__label">km diese Woche</span>
+    </div>
+    <div class="stat card">
+      <span class="stat__icon">🏔️</span>
+      <span class="stat__value">{{ store.longestRun() }}</span>
+      <span class="stat__label">längster Lauf (km)</span>
+    </div>
+    <div class="stat card">
+      <span class="stat__icon">🔥</span>
+      <span class="stat__value">{{ store.streak() }}</span>
+      <span class="stat__label">Tage Streak</span>
+    </div>
+  </section>
+
+  <!-- Garden overview -->
+  <div class="section-head">
+    <h2>Dein Garten</h2>
+    <a class="chip chip-green" routerLink="/garden">🌿 Level {{ store.gardenLevel() }}</a>
+  </div>
+
+  <section class="card garden-overview">
+    @if (store.gardenCount() > 0) {
+      <div class="garden-overview__row">
+        <div class="garden-overview__preview">
+          @for (el of gardenPreview(); track el.id) {
+            <span class="garden-overview__emoji" [title]="el.label">{{ el.emoji }}</span>
+          }
+        </div>
+        <div class="garden-overview__meta">
+          <strong>{{ store.gardenCount() }}</strong>
+          <span class="muted">Pflanzen &amp; Tiere</span>
+          <span class="muted">noch {{ store.elementsToNextLevel() }} bis Level {{ store.gardenLevel() + 1 }}</span>
+        </div>
+      </div>
+      <a class="btn btn-ghost btn-block" routerLink="/garden">Garten ansehen 🌳</a>
+    } @else {
+      <div class="empty-state">
+        <span class="empty-state__emoji">🌱</span>
+        <p>Dein Garten ist noch leer. Trage dein erstes Training ein und sieh zu, wie er wächst.</p>
+        <a class="btn btn-primary" routerLink="/training">Erstes Training hinzufügen</a>
+      </div>
+    }
+  </section>
+</div>

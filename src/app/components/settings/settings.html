@@ -1,0 +1,68 @@
+<div class="page">
+  <div class="section-head">
+    <h2>Einstellungen</h2>
+  </div>
+
+  @if (toast(); as message) {
+    <div class="toast" role="status">{{ message }}</div>
+  }
+
+  <section class="card setting">
+    <div class="setting__label">📅 Wochenziel (km)</div>
+    <p class="muted">Wie viele Kilometer möchtest du pro Woche laufen?</p>
+    <input
+      class="control"
+      type="number"
+      min="1"
+      step="1"
+      #goalInput
+      [value]="store.weeklyGoalKm()"
+      (change)="onGoalChange(goalInput.value)"
+    />
+  </section>
+
+  <section class="card setting">
+    <div class="setting__label">🏁 Renndatum</div>
+    <p class="muted">Das Datum deines Halbmarathons für den Countdown.</p>
+    <input
+      class="control"
+      type="date"
+      #raceInput
+      [value]="store.settings().raceDate ?? ''"
+      (change)="onRaceChange(raceInput.value)"
+    />
+    @if (store.settings().raceDate) {
+      <button class="btn btn-ghost btn-sm setting__clear" (click)="onRaceChange('')">
+        Renndatum entfernen
+      </button>
+    }
+  </section>
+
+  <section class="card setting">
+    <div class="setting__label">🌱 Demo-Daten</div>
+    <p class="muted">Füge einige Beispiel-Läufe hinzu, um die App auszuprobieren.</p>
+    <button class="btn btn-warm" (click)="addDemo()">Demo-Läufe hinzufügen</button>
+  </section>
+
+  <section class="card setting setting--danger">
+    <div class="setting__label">🗑️ Alle Daten zurücksetzen</div>
+    <p class="muted">
+      Löscht alle Läufe und setzt die Einstellungen zurück. Das kann nicht rückgängig gemacht werden.
+    </p>
+    @if (confirmReset()) {
+      <div class="reset-confirm">
+        <span>Wirklich alles unwiderruflich löschen?</span>
+        <div class="reset-confirm__actions">
+          <button class="btn btn-ghost" (click)="cancelReset()">Abbrechen</button>
+          <button class="btn btn-danger" (click)="doReset()">Ja, alles löschen</button>
+        </div>
+      </div>
+    } @else {
+      <button class="btn btn-danger-ghost" (click)="requestReset()">Daten zurücksetzen</button>
+    }
+  </section>
+
+  <p class="settings-foot muted">
+    Alle Daten werden ausschließlich lokal in deinem Browser (localStorage) gespeichert.
+  </p>
+</div>

@@ -1,0 +1,121 @@
+.garden-head {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.garden-head__level {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.garden-head__badge {
+  font-size: 2rem;
+  background: var(--green-soft);
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.garden-head__level-num {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--green-dark);
+}
+
+.garden-head__progress .muted {
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+}
+
+@media (min-width: 560px) {
+  .garden-head {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .garden-head__progress {
+    flex: 1;
+  }
+}
+
+/* The garden bed --------------------------------------------------------- */
+
+.garden-field {
+  margin-top: 1rem;
+  background: linear-gradient(180deg, #f1f8ee, #ffffff);
+}
+
+.garden-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(54px, 1fr));
+  gap: 0.5rem;
+}
+
+.tile {
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  background: var(--surface-soft);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  animation: grow-in 0.45s ease both;
+}
+
+.tile__emoji {
+  font-size: 1.7rem;
+  display: inline-block;
+}
+
+/* Plants sway gently, flyers float. */
+.tile--easy .tile__emoji,
+.tile--tempo .tile__emoji,
+.tile--intervals .tile__emoji,
+.tile--long .tile__emoji {
+  animation: sway 4s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+
+.tile--butterfly,
+.tile--bird {
+  background: var(--warm-soft);
+  border-color: transparent;
+}
+
+.tile--butterfly .tile__emoji,
+.tile--bird .tile__emoji {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Reward legend ---------------------------------------------------------- */
+
+.legend {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.legend__item {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.legend__emoji {
+  font-size: 1.4rem;
+  width: 2rem;
+  text-align: center;
+}
+
+.legend__rule {
+  font-weight: 500;
+}
+
+@media (min-width: 560px) {
+  .legend {
+    grid-template-columns: 1fr 1fr;
+  }
+}

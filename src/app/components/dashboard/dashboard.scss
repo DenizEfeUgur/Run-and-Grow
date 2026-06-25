@@ -1,0 +1,175 @@
+.hero {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.hero__emoji {
+  font-size: 2.4rem;
+  animation: float 4s ease-in-out infinite;
+}
+
+.hero__title {
+  font-size: 1.4rem;
+}
+
+.hero__text {
+  opacity: 0.95;
+  margin-bottom: 0.9rem;
+}
+
+.card-label {
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin-bottom: 0.6rem;
+  color: var(--muted);
+}
+
+.dash-grid {
+  margin-top: 1rem;
+}
+
+/* Countdown */
+.countdown {
+  display: flex;
+  flex-direction: column;
+}
+
+.countdown__big {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  margin: 0.1rem 0;
+}
+
+.countdown__num {
+  font-size: 2.7rem;
+  font-weight: 800;
+  color: var(--green-dark);
+  line-height: 1;
+}
+
+.countdown__unit {
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.countdown__msg {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--green-dark);
+}
+
+.countdown__date {
+  font-size: 0.8rem;
+  margin: 0.3rem 0 0.9rem;
+}
+
+.countdown__hint {
+  margin-bottom: 0.9rem;
+}
+
+.countdown__set {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  font-size: 0.85rem;
+  margin-top: auto;
+}
+
+/* Weekly goal */
+.weekly__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.weekly__values {
+  margin: 0.3rem 0 0.7rem;
+}
+
+.weekly__km {
+  font-size: 2.1rem;
+  font-weight: 800;
+  color: var(--green-dark);
+}
+
+.weekly__pct {
+  font-size: 0.85rem;
+  margin-top: 0.55rem;
+}
+
+/* KPIs */
+.stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8rem;
+  margin-top: 1rem;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.1rem;
+  padding: 1rem 0.6rem;
+}
+
+.stat__icon {
+  font-size: 1.5rem;
+}
+
+.stat__value {
+  font-size: 1.7rem;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.stat__label {
+  font-size: 0.74rem;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+@media (min-width: 680px) {
+  .stats {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Garden overview */
+.garden-overview__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.9rem;
+  flex-wrap: wrap;
+}
+
+.garden-overview__preview {
+  display: flex;
+  gap: 0.2rem;
+  font-size: 1.8rem;
+  flex-wrap: wrap;
+}
+
+.garden-overview__emoji {
+  animation: grow-in 0.5s ease both;
+}
+
+.garden-overview__meta {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+}
+
+.garden-overview__meta strong {
+  font-size: 1.3rem;
+}
+
+.garden-overview__meta .muted {
+  font-size: 0.78rem;
+}

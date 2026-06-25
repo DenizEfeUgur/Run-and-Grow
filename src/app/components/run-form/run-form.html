@@ -1,0 +1,134 @@
+<div class="page">
+  <div class="section-head">
+    <h2>Training hinzufügen</h2>
+  </div>
+
+  @if (submitted()) {
+    <section class="success card" role="status" aria-live="polite">
+      <div class="success__head">
+        <span class="success__check">✅</span>
+        <div>
+          <strong>Stark gemacht!</strong>
+          <p class="muted">Dein Lauf ist gespeichert und dein Garten wächst.</p>
+        </div>
+      </div>
+
+      <div class="success__rewards">
+        @for (reward of rewards(); track reward.text; let i = $index) {
+          <div class="reward" [style.animation-delay.ms]="i * 140">
+            <span class="reward__emoji">{{ reward.emoji }}</span>
+            <span class="reward__text">{{ reward.text }}</span>
+          </div>
+        }
+      </div>
+
+      <div class="success__actions">
+        <button type="button" class="btn btn-ghost" (click)="dismiss()">Noch ein Training</button>
+        <a class="btn btn-primary" routerLink="/garden">Garten ansehen 🌳</a>
+      </div>
+    </section>
+  }
+
+  <form class="card form" [formGroup]="form" (ngSubmit)="submit()" novalidate>
+    <div class="grid grid-2">
+      <div class="field">
+        <label for="date">Datum</label>
+        <input
+          id="date"
+          class="control"
+          type="date"
+          formControlName="date"
+          [class.is-invalid]="invalid('date')"
+        />
+        @if (invalid('date')) {
+          <span class="field-error">Bitte ein Datum wählen.</span>
+        }
+      </div>
+
+      <div class="field">
+        <label for="distance">Distanz (km)</label>
+        <input
+          id="distance"
+          class="control"
+          type="number"
+          inputmode="decimal"
+          step="0.1"
+          min="0"
+          placeholder="z. B. 7.5"
+          formControlName="distanceKm"
+          [class.is-invalid]="invalid('distanceKm')"
+        />
+        @if (invalid('distanceKm')) {
+          <span class="field-error">Bitte eine Distanz größer 0 angeben.</span>
+        }
+      </div>
+
+      <div class="field">
+        <label for="duration">Dauer (Minuten)</label>
+        <input
+          id="duration"
+          class="control"
+          type="number"
+          inputmode="numeric"
+          step="1"
+          min="1"
+          placeholder="z. B. 42"
+          formControlName="durationMinutes"
+          [class.is-invalid]="invalid('durationMinutes')"
+        />
+        @if (invalid('durationMinutes')) {
+          <span class="field-error">Bitte eine Dauer größer 0 angeben.</span>
+        }
+      </div>
+
+      <div class="field">
+        <label>Pace (Vorschau)</label>
+        <div class="pace-preview control">
+          {{ form.controls.distanceKm.value | pace: form.controls.durationMinutes.value }}
+        </div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Trainingstyp</label>
+      <div class="choice-grid">
+        @for (t of runTypes; track t.value) {
+          <button
+            type="button"
+            class="choice"
+            [class.choice--active]="form.controls.type.value === t.value"
+            (click)="setType(t.value)"
+          >
+            <span class="choice__emoji">{{ t.gardenEmoji }}</span>
+            <span class="choice__label">{{ t.label }}</span>
+          </button>
+        }
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Wie hat es sich angefühlt?</label>
+      <div class="feeling-row">
+        @for (f of feelings; track f.value) {
+          <button
+            type="button"
+            class="feeling"
+            [class.feeling--active]="form.controls.feeling.value === f.value"
+            (click)="setFeeling(f.value)"
+            [attr.aria-label]="f.label"
+          >
+            <span class="feeling__emoji">{{ f.emoji }}</span>
+            <span class="feeling__label">{{ f.label }}</span>
+          </button>
+        }
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="note">Notiz (optional)</label>
+      <textarea id="note" class="control" formControlName="note" placeholder="Wie war der Lauf?"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-block">💾 Training speichern</button>
+  </form>
+</div>

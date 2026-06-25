@@ -1,0 +1,188 @@
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+/* --------------------------------------------------------------- Header */
+
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.7rem 1rem;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-width: 0;
+}
+
+.brand__logo {
+  font-size: 1.7rem;
+  filter: drop-shadow(0 4px 6px rgba(63, 157, 109, 0.25));
+  animation: float 5s ease-in-out infinite;
+}
+
+.brand__text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.brand__title {
+  font-weight: 800;
+  font-size: 1.05rem;
+  letter-spacing: -0.02em;
+}
+
+.brand__tag {
+  font-size: 0.72rem;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.header-chips {
+  display: flex;
+  gap: 0.4rem;
+  flex-shrink: 0;
+}
+
+@media (max-width: 460px) {
+  .brand__tag {
+    display: none;
+  }
+}
+
+/* ------------------------------------------------------ Content + nav */
+
+.app-content {
+  flex: 1;
+  padding-bottom: 0.5rem;
+}
+
+.app-footer {
+  text-align: center;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--muted);
+  padding: 0.5rem 1rem 1rem;
+  margin-bottom: calc(80px + env(safe-area-inset-bottom, 0px)); /* clear the fixed bottom nav on mobile */
+}
+
+.app-nav {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 30;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid var(--border);
+  padding: 0.3rem 0.4rem calc(0.3rem + env(safe-area-inset-bottom, 0px));
+}
+
+.app-nav__inner {
+  display: flex;
+  gap: 0.15rem;
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+.nav-link {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 0.4rem 0.2rem;
+  border-radius: 14px;
+  color: var(--muted);
+  font-weight: 600;
+  transition: background 0.18s ease, color 0.18s ease, transform 0.12s ease;
+}
+
+.nav-link__icon {
+  font-size: 1.3rem;
+  line-height: 1;
+}
+
+.nav-link__label {
+  font-size: 0.64rem;
+  white-space: nowrap;
+}
+
+.nav-link--active {
+  color: var(--green-dark);
+  background: var(--green-soft);
+}
+
+.nav-link:active {
+  transform: scale(0.94);
+}
+
+/* -------------------------------------------------- Desktop: top pills */
+
+@media (min-width: 820px) {
+  .app-content {
+    padding-bottom: 1.5rem;
+  }
+
+  .app-footer {
+    margin-bottom: 0;
+  }
+
+  .app-nav {
+    position: static;
+    background: transparent;
+    backdrop-filter: none;
+    border-top: none;
+    padding: 0.8rem 1rem 0;
+  }
+
+  .app-nav__inner {
+    max-width: 920px;
+    gap: 0.4rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 0.35rem;
+    box-shadow: var(--shadow-soft);
+  }
+
+  .nav-link {
+    flex-direction: row;
+    gap: 0.45rem;
+    padding: 0.55rem 1rem;
+    border-radius: 999px;
+  }
+
+  .nav-link__icon {
+    font-size: 1.05rem;
+  }
+
+  .nav-link__label {
+    font-size: 0.92rem;
+  }
+
+  .nav-link:hover {
+    color: var(--green-dark);
+    background: var(--surface-soft);
+  }
+
+  .nav-link--active:hover {
+    background: var(--green-soft);
+  }
+}

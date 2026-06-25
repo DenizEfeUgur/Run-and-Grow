@@ -1,0 +1,80 @@
+<div class="page">
+  <div class="section-head">
+    <h2>Historie</h2>
+    <span class="muted">{{ store.runs().length }} Läufe</span>
+  </div>
+
+  @if (store.runs().length > 0) {
+    <div class="filter-row">
+      @for (opt of filterOptions; track opt.value) {
+        <button
+          type="button"
+          class="filter-chip"
+          [class.filter-chip--active]="filter() === opt.value"
+          (click)="setFilter(opt.value)"
+        >
+          {{ opt.label }}
+        </button>
+      }
+    </div>
+  }
+
+  @if (filteredRuns().length > 0) {
+    <ul class="run-list">
+      @for (run of filteredRuns(); track run.id) {
+        <li class="run card">
+          <div class="run__main">
+            <div class="run__type" [title]="typeMeta[run.type].label">
+              {{ typeMeta[run.type].gardenEmoji }}
+            </div>
+            <div class="run__info">
+              <div class="run__top">
+                <span class="run__distance">{{ run.distanceKm }} km</span>
+                <span class="run__feeling" [title]="feelingMeta[run.feeling].label">
+                  {{ feelingMeta[run.feeling].emoji }}
+                </span>
+              </div>
+              <div class="run__meta muted">
+                {{ formatDate(run.date) }} · {{ run.durationMinutes }} min ·
+                {{ run.distanceKm | pace: run.durationMinutes }}
+              </div>
+              <div class="run__tags">
+                <span class="chip chip-green">{{ typeMeta[run.type].label }}</span>
+              </div>
+              @if (run.note) {
+                <p class="run__note">„{{ run.note }}“</p>
+              }
+            </div>
+          </div>
+
+          @if (pendingDelete() === run.id) {
+            <div class="run__confirm">
+              <span>Wirklich löschen?</span>
+              <div class="run__confirm-actions">
+                <button class="btn btn-sm btn-ghost" (click)="cancelDelete()">Abbrechen</button>
+                <button class="btn btn-sm btn-danger" (click)="confirmDelete(run.id)">Löschen</button>
+              </div>
+            </div>
+          } @else {
+            <button class="run__delete" (click)="askDelete(run.id)" aria-label="Lauf löschen">🗑️</button>
+          }
+        </li>
+      }
+    </ul>
+  } @else if (store.runs().length > 0) {
+    <section class="card">
+      <div class="empty-state">
+        <span class="empty-state__emoji">🔍</span>
+        <p>Keine Läufe für diesen Filter.</p>
+      </div>
+    </section>
+  } @else {
+    <section class="card">
+      <div class="empty-state">
+        <span class="empty-state__emoji">📭</span>
+        <p>Noch keine Läufe erfasst. Leg los und dokumentiere dein erstes Training!</p>
+        <a class="btn btn-primary" routerLink="/training">Training hinzufügen</a>
+      </div>
+    </section>
+  }
+</div>

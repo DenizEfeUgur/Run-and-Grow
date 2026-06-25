@@ -1,0 +1,57 @@
+.setting {
+  margin-bottom: 1rem;
+}
+
+.setting__label {
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+}
+
+.setting .control {
+  max-width: 240px;
+  margin-top: 0.7rem;
+}
+
+.setting__clear {
+  margin-top: 0.7rem;
+  margin-left: 0.6rem;
+}
+
+.setting--danger {
+  border-color: #f3d4d2;
+}
+
+.reset-confirm {
+  margin-top: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.reset-confirm > span {
+  font-weight: 700;
+  color: var(--danger);
+}
+
+.reset-confirm__actions {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.toast {
+  background: var(--green-dark);
+  color: #fff;
+  padding: 0.7rem 1rem;
+  border-radius: var(--radius-sm);
+  margin-bottom: 1rem;
+  font-weight: 600;
+  box-shadow: var(--shadow);
+  animation: slide-up 0.3s ease both;
+}
+
+.settings-foot {
+  text-align: center;
+  font-size: 0.8rem;
+  margin-top: 1rem;
+}

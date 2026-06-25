@@ -1,0 +1,132 @@
+.filter-row {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.filter-chip {
+  font: inherit;
+  font-weight: 600;
+  font-size: 0.82rem;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--muted);
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+
+.filter-chip:hover {
+  border-color: var(--green);
+}
+
+.filter-chip--active {
+  background: var(--green);
+  border-color: var(--green);
+  color: #fff;
+}
+
+.run-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.run {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  animation: slide-up 0.3s ease both;
+}
+
+.run__main {
+  display: flex;
+  gap: 0.8rem;
+  align-items: flex-start;
+  min-width: 0;
+}
+
+.run__type {
+  font-size: 1.9rem;
+  width: 3rem;
+  height: 3rem;
+  display: grid;
+  place-items: center;
+  background: var(--green-soft);
+  border-radius: 14px;
+  flex-shrink: 0;
+}
+
+.run__info {
+  min-width: 0;
+}
+
+.run__top {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.run__distance {
+  font-size: 1.15rem;
+  font-weight: 800;
+}
+
+.run__feeling {
+  font-size: 1.1rem;
+}
+
+.run__meta {
+  font-size: 0.84rem;
+  margin-top: 0.1rem;
+}
+
+.run__tags {
+  margin-top: 0.4rem;
+}
+
+.run__note {
+  margin: 0.5rem 0 0;
+  font-size: 0.88rem;
+  font-style: italic;
+}
+
+.run__delete {
+  border: none;
+  background: transparent;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0.4rem;
+  border-radius: 10px;
+  flex-shrink: 0;
+  transition: background 0.15s ease;
+}
+
+.run__delete:hover {
+  background: var(--danger-soft);
+}
+
+.run__confirm {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  align-items: flex-end;
+  flex-shrink: 0;
+}
+
+.run__confirm > span {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--danger);
+}
+
+.run__confirm-actions {
+  display: flex;
+  gap: 0.4rem;
+}

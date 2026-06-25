@@ -1,0 +1,61 @@
+<div class="page">
+  <div class="section-head">
+    <h2>Dein Garten</h2>
+  </div>
+
+  <section class="card garden-head">
+    <div class="garden-head__level">
+      <span class="garden-head__badge">🌿</span>
+      <div>
+        <div class="garden-head__level-num">Level {{ store.gardenLevel() }}</div>
+        <div class="muted">{{ store.gardenCount() }} Garten-Elemente insgesamt</div>
+      </div>
+    </div>
+
+    <div class="garden-head__progress">
+      <div class="progress" role="progressbar" [attr.aria-valuenow]="levelPercent()">
+        <div class="progress__bar" [style.width.%]="levelPercent()"></div>
+      </div>
+      <p class="muted">
+        Noch {{ store.elementsToNextLevel() }} Element(e) bis Level {{ store.gardenLevel() + 1 }}
+      </p>
+    </div>
+  </section>
+
+  @if (store.gardenCount() > 0) {
+    <section class="card garden-field">
+      <div class="garden-grid">
+        @for (el of elements(); track el.id; let i = $index) {
+          <div
+            class="tile tile--{{ el.kind }}"
+            [title]="el.label"
+            [style.animation-delay.ms]="i < 24 ? i * 35 : 0"
+          >
+            <span class="tile__emoji">{{ el.emoji }}</span>
+          </div>
+        }
+      </div>
+    </section>
+  } @else {
+    <section class="card">
+      <div class="empty-state">
+        <span class="empty-state__emoji">🌱</span>
+        <p>Noch nichts gewachsen. Jede Trainingseinheit pflanzt ein neues Element in deinen Garten.</p>
+        <a class="btn btn-primary" routerLink="/training">Training hinzufügen</a>
+      </div>
+    </section>
+  }
+
+  <div class="section-head">
+    <h2>Belohnungen</h2>
+  </div>
+
+  <section class="card legend">
+    @for (entry of legend; track entry.rule) {
+      <div class="legend__item">
+        <span class="legend__emoji">{{ entry.emoji }}</span>
+        <span class="legend__rule">{{ entry.rule }}</span>
+      </div>
+    }
+  </section>
+</div>

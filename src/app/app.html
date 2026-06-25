@@ -1,0 +1,37 @@
+<div class="app-shell">
+  <header class="app-header">
+    <a class="brand" routerLink="/dashboard">
+      <span class="brand__logo">🌱</span>
+      <span class="brand__text">
+        <span class="brand__title">Run &amp; Grow by Deniz</span>
+        <span class="brand__tag">Lauf dich fit, lass deinen Garten wachsen</span>
+      </span>
+    </a>
+
+    <div class="header-chips">
+      <span class="chip chip-green" title="Gartenlevel">🌿 Level {{ store.gardenLevel() }}</span>
+      @if (store.raceStatus(); as race) {
+        <span class="chip chip-warm" title="Halbmarathon">🏁 {{ race.label }}</span>
+      }
+    </div>
+  </header>
+
+  <nav class="app-nav" aria-label="Hauptnavigation">
+    <div class="app-nav__inner">
+      @for (item of navItems; track item.path) {
+        <a class="nav-link" [routerLink]="item.path" routerLinkActive="nav-link--active">
+          <span class="nav-link__icon">{{ item.icon }}</span>
+          <span class="nav-link__label">{{ item.label }}</span>
+        </a>
+      }
+    </div>
+  </nav>
+
+  <main class="app-content">
+    <router-outlet />
+  </main>
+
+  <footer class="app-footer">
+    <span>🌱 Run &amp; Grow · by Deniz</span>
+  </footer>
+</div>

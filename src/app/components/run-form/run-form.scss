@@ -1,0 +1,177 @@
+.form {
+  margin-top: 1rem;
+}
+
+/* Success banner ---------------------------------------------------------- */
+
+.success {
+  border: 1px solid var(--green);
+  background: linear-gradient(180deg, var(--green-soft), var(--surface));
+  margin-bottom: 1rem;
+  animation: slide-up 0.4s ease both;
+}
+
+.success__head {
+  display: flex;
+  gap: 0.7rem;
+  align-items: center;
+  margin-bottom: 0.9rem;
+}
+
+.success__check {
+  font-size: 1.9rem;
+  animation: pop 0.5s ease both;
+}
+
+.success__rewards {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.reward {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.6rem 0.8rem;
+  animation: pop 0.55s ease both;
+}
+
+.reward__emoji {
+  font-size: 1.7rem;
+}
+
+.reward__text {
+  font-weight: 600;
+}
+
+.success__actions {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.success__actions .btn {
+  flex: 1;
+}
+
+/* Pace preview ------------------------------------------------------------ */
+
+.pace-preview {
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+  color: var(--green-dark);
+  background: var(--surface-soft);
+}
+
+/* Type chooser ------------------------------------------------------------ */
+
+.choice-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+}
+
+@media (min-width: 560px) {
+  .choice-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+.choice {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.75rem 0.4rem;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease, transform 0.12s ease;
+  font: inherit;
+}
+
+.choice__emoji {
+  font-size: 1.5rem;
+}
+
+.choice__label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-align: center;
+  line-height: 1.1;
+}
+
+.choice:hover {
+  border-color: var(--green);
+}
+
+.choice:active {
+  transform: scale(0.97);
+}
+
+.choice--active {
+  border-color: var(--green);
+  background: var(--green-soft);
+  box-shadow: var(--shadow-soft);
+}
+
+.choice--active .choice__label {
+  color: var(--green-dark);
+}
+
+/* Feeling chooser --------------------------------------------------------- */
+
+.feeling-row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.feeling {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  padding: 0.75rem 0.4rem;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease, transform 0.12s ease;
+  font: inherit;
+}
+
+.feeling__emoji {
+  font-size: 1.8rem;
+}
+
+.feeling__label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.feeling:hover {
+  border-color: var(--green);
+}
+
+.feeling:active {
+  transform: scale(0.97);
+}
+
+.feeling--active {
+  border-color: var(--green);
+  background: var(--green-soft);
+}
+
+.feeling--active .feeling__label {
+  color: var(--green-dark);
+}
